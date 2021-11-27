@@ -102,5 +102,5 @@ def product_collections_view(request):
     return render(request,'collection.html',context)
 
 def product_test_view(request):
-    return render(request,'case_test.html')
+    return render(request,'test_product.html')
 
