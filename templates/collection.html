@@ -11,15 +11,15 @@
                         <div class="name-sort-container">
                             <div class="name-sort">ชื่อสินค้า ▸</div>
                             <div class="name-sort-to">
-                                <a href="#">A to Z</a><br>
-                                <a href="#">Z to A</a>
+                                <a href="?alpha-order=asc">A to Z</a><br>
+                                <a href="?alpha-order=desc">Z to A</a>
                             </div>
                         </div>
                         <div class="price-sort-container">
                             <div class="price-sort">ราคา ▸</div>
                             <div class="price-sort-to">
-                                <a href="#">น้อย ไป มาก</a><br>
-                                <a href="#">มาก ไป น้อย</a>
+                                <a href="?price-order=asc">น้อย ไป มาก</a><br>
+                                <a href="?price-order=desc">มาก ไป น้อย</a>
                             </div>
                         </div>
                     </div>
@@ -46,11 +46,15 @@
             <div class="cases-product-showcase">
 
                 {%for obj in allproducts%}
-                <div class="cases-product">
-                    <div class="cases-image"><img src="{%static '/images/CASE1.png' %}" alt="" width=20%></div>
-                    <div class="cases-name">{{obj.title}}</div>
-                    <div class="cases-price">{{obj.price}}</div>
-                </div>
+
+                <a href="/cases/product/{{obj.slug}}">
+                    <div class="cases-product">
+                        <div class="cases-image"><img src="{{obj.image.url}}" alt="" width=65%></div>
+                        <div class="cases-name">{{obj.title}}</div>
+                        <div class="cases-price">{{obj.price}}</div>
+                    </div>
+                </a>
+
                 {%endfor%}
 
             </div>
