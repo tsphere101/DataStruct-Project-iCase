@@ -1,5 +1,8 @@
 from django.shortcuts import render
 from .models import AllProduct
+from django.http import Http404
+from django.core.exceptions import ObjectDoesNotExist
+
 
 # Create your views here.
 
@@ -51,6 +54,16 @@ def filter_below_price(data, price):
 
     return result
 
+def product_detail_view(request,product_id):
+
+    try:
+        o = AllProduct.objects.get(id= product_id)
+    except AllProduct.DoesNotExist:
+        raise Http404
+
+        
+    context = {'obj':o}
+    return render(request,'test_product_instance.html',context)
 
 def product_view(request):
 
@@ -101,6 +114,12 @@ def product_collections_view(request):
     }
     return render(request,'collection.html',context)
 
-def product_test_view(request):
-    return render(request,'test_product.html')
+def product_test_filter(request):
+    return render(request,'product/test_product_filter.html')
 
+def product_detail_view(request,product_id):
+    obj = AllProduct.objects.get(id = product_id)
+
+    context = {'obj':obj} 
+
+    return render(request,'product/detail.html',context)
