@@ -1,10 +1,59 @@
  {%extends 'base.html'%} {%load static%} {%block content%}
 
-<h1>This is the PRODUCT page</h1> <br>
 
-<img src="{{obj.image.url}}" width=75% alt="">
 
-<p>Title : {{obj.title}}</p>
-<p>Price : {{obj.price}}</p>
+<div class="detail-body-container">
+    <div class="wrapper">
+        <div class="back-btn">
+            <a href="/cases">◀ ย้อนกลับ</a>
+        </div>
+        <div class="detail-cases-image"><img src="{{obj.image.url}}" width=100% alt=""></div>
+        <div class="detail-cases-detail">
+            <div class="name-price">
+                <div class="case-name">{{obj.title}}</div>
+                <div class="case-model">iPhone 13 Pro Max</div>
+                <div class="case-price">{{obj.price}} ฿</div>
+            </div>
+            <!-- quantity button -->
+            <div class="quantity-container">
+                <div class="title">จำนวนสินค้า :</div>
+                <div class="input-group">
+                    <input type="button" onclick="decrement()" value="-" class="button-minus">
+                    <input type="number" id="items-quantity" value="1" class="quantity-field">
+                    <input type="button" onclick="increment()" value="+" class="button-plus">
+                </div>
+            </div>
+            <div class="addtocart">
+                <div class="addtocart-container">
+                    <a href="#">เพิ่มลงตะกร้า</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function decrement() {
+        var data = parseInt(document.getElementById("items-quantity").value);
+        if (data > 1) {
+            data = data - 1;
+        } else {
+            data = 1;
+        }
+        document.getElementById("items-quantity").value = data;
+    }
+
+    function increment() {
+        var data = parseInt(document.getElementById("items-quantity").value);
+        data = data + 1;
+        document.getElementById("items-quantity").value = data;
+    }
+
+    window.onclick = function(event) {
+        var data = parseInt(document.getElementById("items-quantity").value);
+        if (data < 1) {
+            document.getElementById("items-quantity").value = 1;
+        }
+    }
+</script>
 
 {%endblock%}

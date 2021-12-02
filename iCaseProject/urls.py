@@ -7,12 +7,13 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("",page.home_view,name='home-view'),
+    path("",page.home_view),
     path('cases/',include('product.urls')),
 
     # path("cases/",page.cases_view),
     # path("collection/",page.collection_view),
 
     path('test/',page.test_view),
+    path('login/',page.login_view)
 
 ]+ static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)
